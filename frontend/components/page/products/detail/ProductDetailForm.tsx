@@ -49,7 +49,11 @@ const ProductDetailForm = ({ product, handleBuyProduct }: Props) => {
             <Typography variant="h5" width={500} gutterBottom>
               {product.description}
             </Typography>
-            <Typography variant="h5" sx={{ paddingRight: 0 }} gutterBottom>
+            <Typography
+              variant="h5"
+              sx={{ paddingRight: 0, marginTop: 10, fontWeight: "bold" }}
+              gutterBottom
+            >
               ราคา {product.price} BTC
             </Typography>
             <Button
