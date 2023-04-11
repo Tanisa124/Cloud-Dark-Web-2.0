@@ -1,0 +1,72 @@
+[
+    {
+        "ID": 1,
+        "Title": "ซอยจุ๊เที่ยงคืน",
+        "Description": "ซอยจุ๊สุดแซ่บที่กินแล้วต้องร้องจุ๊ๆ",
+        "Price": 0.1,
+        "Img": "https://thestandard.co/soi-juh-north-eastern-food/5-947/"
+    },
+    {
+        "ID": 2,
+        "Title": "วิธีแปลงร่างเป็นริกกี้แมลงสาบเพื่อนรัก",
+        "Description": "แมลงสาบจอมโหด ไล่ถลกหนังคน",
+        "Price": 13,
+        "Img": "https://i.ytimg.com/vi/OnsXlbX87_M/maxresdefault.jpg"
+    },
+    {
+        "ID": 3,
+        "Title": "ไททันจู่โจม สาขา ประเทศไทย",
+        "Description": "ปิศาจยักษ์ ที่ทำลายทุกสิ่งที่ขวางหน้า",
+        "Price": 200,
+        "Img": "https://live.staticflickr.com/65535/52808296777_10de8b0401_b.jpg"
+    },
+    {
+        "ID": 4,
+        "Title": "อาคาสะ ข้างขึ้นที่ 3 สาขา ประเทศไทย",
+        "Description": "อาคาสะ อสูรข้างขึ้นสุดแกร่ง รับอาคาสะไปรับใช้คุณในราคาถูก",
+        "Price": 162,
+        "Img": "https://live.staticflickr.com/65535/52809066954_1d58053e00_b.jpg"
+    },
+    {
+        "ID": 5,
+        "Title": "ปลาหมึกยักษ์",
+        "Description": "ปลาหมึกยักษ์ ปลาหมึกปิศาจ ที่ใช้หนวดเป็นอาวุธรัดพันตัวเหยื่อ",
+        "Price": 99,
+        "Img": "https://static.wikia.nocookie.net/powerlisting/images/c/c5/King_Kraken.jpg/revision/latest?cb=20220616094322"
+    },
+    {
+        "ID": 6,
+        "Title": "4 Kings",
+        "Description": "จะไม่เก่งให้ใครกลัว แต่จะพอตัวและไม่เคยกลัวใคร",
+        "Price": 0.00000000001,
+        "Img": "https://www.matichonweekly.com/wp-content/uploads/2022/06/4-kings-2-cover-2182.jpg"
+    },
+    {
+        "ID": 7,
+        "Title": "เปรตไอ้ปื๊ด",
+        "Description": "พลังแห่งการตีพ่อตีแม่ เพื่อที่จะเอาเงินไปดูดยา",
+        "Price": 20,
+        "Img": "https://i.ytimg.com/vi/esjWl8NqcxY/maxresdefault.jpg"
+    },
+    {
+        "ID": 8,
+        "Title": "ส้มตำโจ๊ะๆ ตอนเที่ยงคืน",
+        "Description": "ส้มตำสุดแซ่บ เสริฟพร้อมความสยองสุดหลอน",
+        "Price": 0.02,
+        "Img": "https://live.staticflickr.com/65535/52808327587_349e7bdb0f_b.jpg"
+    },
+    {
+        "ID": 9,
+        "Title": "สตรีทฟู้ดอินเดีย",
+        "Description": "อร่อยถูกใจ อนามัยถูกลืม",
+        "Price": 0.00005,
+        "Img": "https://www.gourmetandcuisine.com/Images/editor_upload/_editor20220518023149_original.jpg"
+    },
+    {
+        "ID": 10,
+        "Title": "ไก่ทอดกุ๊กๆ กุ๊กๆไก่ทอด",
+        "Description": "ไก่ทอดสุดสะอาด แมลงสาบอาบน้ำทุกตัว",
+        "Price": 0.00003,
+        "Img": "https://live.staticflickr.com/65535/52808336522_fce6e2a351_b.jpg"
+    }
+]

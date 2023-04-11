@@ -8,6 +8,9 @@ export const StyledTextField = styled(TextField)({
     "& label.Mui-focused": {
       color: "white"
     },
+    "& .MuiInput-underline:before": {
+        borderBottomColor: "white"
+    },
     "& .MuiInput-underline:after": {
       borderBottomColor: "white"
     },
@@ -18,5 +21,5 @@ export const StyledTextField = styled(TextField)({
       "&.Mui-focused fieldset": {
         borderColor: "white"
       }
-    }
+    },
   });
