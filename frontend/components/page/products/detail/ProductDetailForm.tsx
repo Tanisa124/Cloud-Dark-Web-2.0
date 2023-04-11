@@ -4,6 +4,7 @@ import { IProduct } from "@/models/Product";
 import { Box, Button, Container, IconButton, Typography } from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import React from "react";
+import Logo from "@/components/logo";
 
 interface Props {
   product: IProduct;
@@ -14,15 +15,17 @@ const ProductDetailForm = ({ product, handleBuyProduct }: Props) => {
   return (
     <Box display="flex" flexDirection="column" justifyContent="center">
       <DarkWebAppBar pageName={"Product Detail"} />
+      <Logo></Logo>
       <Box
         display="flex"
         flexDirection="column"
         justifyContent="center"
+        textAlign={"center"}
         padding={5}
       >
         <Container>
-          <Typography variant="h1" gutterBottom>
-            {product.name}
+          <Typography variant="h2" sx={{ textAlign: "center" }} gutterBottom>
+            {product.title}
           </Typography>
         </Container>
 
@@ -32,15 +35,14 @@ const ProductDetailForm = ({ product, handleBuyProduct }: Props) => {
             sx={{
               height: "50%",
               width: "50%",
-              flex: 1,
             }}
             alt="Product image"
-            src={product.image}
+            src={product.img}
           />
           <Box
             display="flex"
             flexDirection="column"
-            justifyContent="space-between"
+            justifyContent="center"
             alignItems="center"
             padding={5}
           >

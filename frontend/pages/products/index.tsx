@@ -2,10 +2,11 @@ import Product from "@/components/Product";
 import DarkWebAppBar from "@/components/darkWebAppBar";
 import Logo from "@/components/logo";
 import { Container, Grid } from "@mui/material";
-import mock_data from "../../data/mock_data.json";
-import { useRouter } from "next/router";
+import mock_data from "../../../data/mock_data.json";
 
-export default function Home() {
+type Props = {};
+
+const ProductListPage = (props: Props) => {
   return (
     <>
       <DarkWebAppBar pageName="หน้าหลัก"></DarkWebAppBar>
@@ -27,4 +28,6 @@ export default function Home() {
       </Container>
     </>
   );
-}
+};
+
+export default ProductListPage;

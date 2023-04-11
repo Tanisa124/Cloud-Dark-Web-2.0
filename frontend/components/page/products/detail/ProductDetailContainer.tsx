@@ -6,7 +6,7 @@ interface Props {
   product: IProduct;
 };
 
-const ProdcutDetailContainer = ({ product }: Props) => {
+const ProductDetailContainer = ({ product }: Props) => {
   const handleBuyProduct = () => {
     console.log("Buy product");
   };
@@ -15,4 +15,4 @@ const ProdcutDetailContainer = ({ product }: Props) => {
   );
 };
 
-export default ProdcutDetailContainer;
+export default ProductDetailContainer;
