@@ -4,7 +4,7 @@ export interface ProductProps{
     title: string,
     price : number,
     imageSrc: string,
-    id : number
+    id : string
 }
 
 export default function Product(props: ProductProps){
@@ -13,7 +13,11 @@ export default function Product(props: ProductProps){
             <a href={"/products/" + props.id}>
             <Stack direction={'column'}>
             <img src={props.imageSrc}
-                style={{ maxWidth: "100%", maxHeight: "100%"}}
+                style={{ 
+                    maxWidth: '100%',
+                    maxHeight: '180px',
+                    objectFit: 'contain'
+                }}
                 />
             <Stack direction={'row'} justifyContent={'space-between'} marginTop={2}>
                 <Typography color={'white'} maxWidth={'150px'}>{props.title}</Typography>

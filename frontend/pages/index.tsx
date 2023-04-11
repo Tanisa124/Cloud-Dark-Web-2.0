@@ -15,11 +15,11 @@ export default function Home() {
       {
         mock_data.map((element)=>{
           return (
-            <Product title={element.Title} 
-            price={element.Price} 
-            imageSrc={element.Img}
-            key={element.ID}
-            id={element.ID}
+            <Product title={element.title} 
+            price={element.price} 
+            imageSrc={element.img}
+            key={element.id}
+            id={element.id}
             ></Product>
           )
         })

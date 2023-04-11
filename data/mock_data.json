@@ -32,7 +32,7 @@
         "title": "ปลาหมึกยักษ์",
         "description": "ปลาหมึกยักษ์ ปลาหมึกปิศาจ ที่ใช้หนวดเป็นอาวุธรัดพันตัวเหยื่อ",
         "price": 99,
-        "img": "https://static.wikia.nocookie.net/powerlisting/images/c/c5/King_Kraken.jpg/revision/latest?cb=20220616094322"
+        "img": "https://t4.ftcdn.net/jpg/05/52/15/11/360_F_552151117_KUxM7ed3V2JmZCJVdFKWwV9OvNBZNA8y.jpg"
     },
     {
         "id": "6",
@@ -68,5 +68,19 @@
         "description": "ไก่ทอดสุดสะอาด แมลงสาบอาบน้ำทุกตัว",
         "price": 0.00003,
         "img": "https://live.staticflickr.com/65535/52808336522_fce6e2a351_b.jpg"
+    },
+    {
+        "id": "11",
+        "title": "เดทกับมากิมะ หัวหน้านักล่าปิศาจ",
+        "description": "หัวหน้าหน่วยนักล่าปิศาจ ที่พร้อมจะออกล่าคุณ หากคุณไม่ตามใจเธอ",
+        "price": 300,
+        "img": "https://live.staticflickr.com/65535/52809055366_bab1cee5c0_b.jpg"
+    },
+    {
+        "id": "12",
+        "title": "สแตนด์ สตาร์แพลทตินั่ม",
+        "description": "สแตนด์สุดโหด กับคนคุมสุดเพี้ยน",
+        "price": 20,
+        "img": "https://live.staticflickr.com/65535/52808500667_a39872a32d_b.jpg"
     }
 ]
