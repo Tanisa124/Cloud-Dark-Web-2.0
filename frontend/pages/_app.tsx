@@ -9,6 +9,11 @@ const theme = createTheme({
     },
     secondary:{
       main: '#ffffff'
+    },
+  },
+  typography:{
+    allVariants:{
+      color: "white"
     }
   }
 });
