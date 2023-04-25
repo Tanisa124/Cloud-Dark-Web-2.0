@@ -13,6 +13,9 @@ export class Product{
 
     @Prop()
     price: number;
+
+    @Prop()
+    imageURL: string;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
