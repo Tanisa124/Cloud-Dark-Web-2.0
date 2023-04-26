@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductDto } from './product.dto';
 
@@ -16,6 +16,11 @@ export class ProductController {
         return await this.productService.findAll();
     }
 
+    @Get(':id')
+    async getById(@Param('id') id:string){
+        return await this.productService.findById(id);
+    }
+    
     @Get('search')
     async getProductByKeyword(@Query('keyword') keyword:string){
         return await this.productService.findByKeyword(keyword);

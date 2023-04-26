@@ -23,4 +23,8 @@ export class ProductService {
                 title: {$regex : '.*' + keyword + '.*'}
         });
     }
+
+    async findById(id : string){
+        return await this.productModel.findById(id);
+    }
 }
