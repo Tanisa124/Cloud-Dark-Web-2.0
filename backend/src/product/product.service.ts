@@ -10,6 +10,21 @@ export class ProductService {
 
     async add(dto : ProductDto){
         const createdProduct = new this.productModel(dto);
-        return createdProduct.save();
+        return await createdProduct.save();
+    }
+
+    async findAll(){
+        return await this.productModel.find();
+    }
+
+    async findByKeyword(keyword: string){
+        return await this.productModel.find(
+            {
+                title: {$regex : '.*' + keyword + '.*'}
+        });
+    }
+
+    async findById(id : string){
+        return await this.productModel.findById(id);
     }
 }
