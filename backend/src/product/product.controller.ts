@@ -11,6 +11,11 @@ export class ProductController {
         return  await this.productService.add(dto);
     }
 
+    @Get('search')
+    async getProductByKeyword(@Query('keyword') keyword:string){
+        return await this.productService.findByKeyword(keyword);
+    }
+
     @Get()
     async getAllProduct(){
         return await this.productService.findAll();
@@ -19,10 +24,5 @@ export class ProductController {
     @Get(':id')
     async getById(@Param('id') id:string){
         return await this.productService.findById(id);
-    }
-    
-    @Get('search')
-    async getProductByKeyword(@Query('keyword') keyword:string){
-        return await this.productService.findByKeyword(keyword);
     }
 }
