@@ -47,7 +47,6 @@ const RegisterModal = ({ isOpen, onClose }: Props) => {
 
   return (
     <>
-      (
       <Modal open={isOpen} onClose={onClose}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box sx={modalStyle}>
@@ -153,7 +152,6 @@ const RegisterModal = ({ isOpen, onClose }: Props) => {
           </Box>
         </form>
       </Modal>
-      )
     </>
   );
 };

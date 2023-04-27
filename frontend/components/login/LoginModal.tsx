@@ -1,10 +1,4 @@
-import {
-  Box,
-  Button,
-  Modal,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -140,7 +134,6 @@ const LoginModal = ({ isOpen, onClose }: Props) => {
           </Box>
         </form>
       </Modal>
-      )
     </>
   );
 };
