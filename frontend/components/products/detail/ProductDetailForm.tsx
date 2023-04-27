@@ -1,10 +1,7 @@
-import SearchAppBar from "@/components/AppBar";
-import DarkWebAppBar from "@/components/darkWebAppBar";
 import { IProduct } from "@/models/Product";
-import { Box, Button, Container, IconButton, Typography } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import React from "react";
-import Logo from "@/components/logo";
 
 interface Props {
   product: IProduct;
@@ -14,8 +11,6 @@ interface Props {
 const ProductDetailForm = ({ product, handleBuyProduct }: Props) => {
   return (
     <Box display="flex" flexDirection="column" justifyContent="center">
-      <DarkWebAppBar pageName={"Product Detail"} />
-      <Logo></Logo>
       <Box
         display="flex"
         flexDirection="column"

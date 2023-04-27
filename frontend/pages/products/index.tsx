@@ -1,26 +1,33 @@
-import Product from "@/components/Product";
-import DarkWebAppBar from "@/components/darkWebAppBar";
-import Logo from "@/components/logo";
+import Product from "@/components/products/Product";
 import { Container, Grid } from "@mui/material";
-import mock_data from "../../../data/mock_data.json";
+import { SetStateAction, useEffect, useState } from "react";
+import { AxiosInstance } from "@/util/ApiUtil";
+import { IProduct } from "@/models/Product";
 
 type Props = {};
 
 const ProductListPage = (props: Props) => {
+  const [products, setProducts] = useState<IProduct[]>([]);
+
+  useEffect(() => {
+    AxiosInstance.get("product").then(
+      (response: { data: SetStateAction<IProduct[]> }) => {
+        setProducts(response.data);
+      }
+    );
+  }, []);
   return (
     <>
-      <DarkWebAppBar pageName="หน้าหลัก"></DarkWebAppBar>
-      <Logo></Logo>
       <Container>
         <Grid container spacing={5} paddingTop={5} paddingBottom={10}>
-          {mock_data.map((element) => {
+          {products.map((element) => {
             return (
               <Product
                 title={element.title}
                 price={element.price}
-                imageSrc={element.img}
-                key={element.id}
-                id={element.id}
+                imageSrc={element.imageURL}
+                key={element._id}
+                id={element._id}
               ></Product>
             );
           })}
