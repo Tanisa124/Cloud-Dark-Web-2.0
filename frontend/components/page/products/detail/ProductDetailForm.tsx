@@ -37,7 +37,7 @@ const ProductDetailForm = ({ product, handleBuyProduct }: Props) => {
               width: "50%",
             }}
             alt="Product image"
-            src={product.img}
+            src={product.imageURL}
           />
           <Box
             display="flex"
