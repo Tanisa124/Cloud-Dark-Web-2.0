@@ -1,5 +1,6 @@
 import {
   AppBar,
+  Button,
   IconButton,
   Stack,
   TextField,
@@ -10,15 +11,19 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { StyledTextField } from "./StyledTextField";
 export interface AppBarProp {
+  onRegisterModalOpen: () => void;
   pageName: string;
 }
 
-export default function DarkWebAppBar(prop: AppBarProp) {
+export default function DarkWebAppBar({
+  onRegisterModalOpen,
+  pageName,
+}: AppBarProp) {
   return (
     <AppBar position="static" color="primary">
       <Toolbar variant="dense">
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          {prop.pageName}
+          {pageName}
         </Typography>
         <Stack alignItems={"center"} direction={"row"}>
           <StyledTextField
@@ -43,6 +48,10 @@ export default function DarkWebAppBar(prop: AppBarProp) {
               }}
             ></ShoppingCartOutlinedIcon>
           </IconButton>
+          <Button color="inherit">Login</Button>
+          <Button color="inherit" onClick={onRegisterModalOpen}>
+            Register
+          </Button>
         </Stack>
       </Toolbar>
     </AppBar>
