@@ -1,25 +1,42 @@
-import '@/styles/globals.css'
-import { ThemeProvider, createTheme } from '@mui/material';
-import type { AppProps } from 'next/app'
+import Layout from "@/components/Layout";
+import ToasterMUI from "@/components/Toaster";
+import "@/styles/globals.css";
+import { ThemeProvider, createTheme } from "@mui/material";
+import { SessionProvider } from "next-auth/react";
+import type { AppProps } from "next/app";
+import { Toaster } from "react-hot-toast";
 
-const theme = createTheme({
+const darkTheme = createTheme({
   palette: {
-    primary: {
-      main: '#424242'
-    },
-    secondary:{
-      main: '#ffffff'
+    mode: "dark",
+  },
+  typography: {
+    allVariants: {
+      color: "white",
     },
   },
-  typography:{
-    allVariants:{
-      color: "white"
-    }
-  }
 });
 
-export default function App({ Component, pageProps }: AppProps) {
-  return (<ThemeProvider theme={theme}>
-    <Component {...pageProps} />
-  </ThemeProvider>)
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
+  return (
+    <ThemeProvider theme={darkTheme}>
+      <SessionProvider session={session}>
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            style: {
+              background: "#333",
+              color: "#fff",
+            },
+          }}
+        />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </SessionProvider>
+    </ThemeProvider>
+  );
 }

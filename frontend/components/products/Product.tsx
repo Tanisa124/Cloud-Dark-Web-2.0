@@ -1,4 +1,5 @@
 import { Grid, Stack, Typography } from "@mui/material";
+import Link from "next/link";
 
 export interface ProductProps {
   title: string;
@@ -10,7 +11,7 @@ export interface ProductProps {
 export default function Product(props: ProductProps) {
   return (
     <Grid item xs={6} md={3}>
-      <a href={"/products/" + props.id}>
+      <Link href={"/products/" + props.id}>
         <Stack direction={"column"}>
           <img
             src={props.imageSrc}
@@ -19,6 +20,7 @@ export default function Product(props: ProductProps) {
               maxHeight: "180px",
               objectFit: "contain",
             }}
+            alt={props.title}
           />
           <Stack
             direction={"row"}
@@ -31,7 +33,7 @@ export default function Product(props: ProductProps) {
             <Typography color={"white"}>{props.price} BTC</Typography>
           </Stack>
         </Stack>
-      </a>
+      </Link>
     </Grid>
   );
 }
