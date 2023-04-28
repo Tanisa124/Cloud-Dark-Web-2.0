@@ -44,7 +44,7 @@ export class ProductService {
         
         const completion = await openai.createChatCompletion({
             model: "gpt-3.5-turbo",
-            messages: [{"role": "user", "content": "แต่งรายละเอียดของ" + keyword}],
+            messages: [{"role": "user", "content": "แต่งรายละเอียดของ" + keyword + " โดยความยาวไม่เกิน 2 บรรทัด"}],
             temperature: 0.8
         });
 
