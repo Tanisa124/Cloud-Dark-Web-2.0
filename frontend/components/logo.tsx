@@ -12,7 +12,7 @@ export default function Logo() {
       }}
       textAlign="start"
     >
-      ( DARK-WEB 2.0 )
+      DARK-WEB 2.0
     </Typography>
   );
 }

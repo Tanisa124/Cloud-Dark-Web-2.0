@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import DarkWebBg from "../../public/darkWebBg.png";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 type Props = {};
 
@@ -18,6 +19,7 @@ const homePagestyle = {
 };
 
 const HomePage = (props: Props) => {
+  // const { data: session, status } = useSession();
   return (
     <>
       <Box sx={homePagestyle}>
@@ -33,15 +35,14 @@ const HomePage = (props: Props) => {
         <Button
           variant="outlined"
           sx={{
-            padding: "30px",
+            padding: "15px",
             borderRadius: "10px",
+            // backgroundColor: "white",
+            fontSize: 20,
+            fontWeight: "semibold",
           }}
         >
-          <Link href="/products">
-            <Typography variant="h5" fontWeight="700">
-              See Our Products
-            </Typography>
-          </Link>
+          <Link href="/products">{"Let's see our product"}</Link>
         </Button>
       </Box>
     </>

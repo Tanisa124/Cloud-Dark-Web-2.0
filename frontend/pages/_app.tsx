@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout";
-import ToasterMUI from "@/components/Toaster";
 import "@/styles/globals.css";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { SessionProvider } from "next-auth/react";
@@ -23,7 +22,7 @@ export default function App({
 }: AppProps) {
   return (
     <ThemeProvider theme={darkTheme}>
-      <SessionProvider session={session}>
+      <SessionProvider session={session} >
         <Toaster
           position="top-center"
           toastOptions={{

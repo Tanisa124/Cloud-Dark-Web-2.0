@@ -1,6 +1,4 @@
 import Product from "@/components/products/Product";
-import DarkWebAppBar from "@/components/darkWebAppBar";
-import Logo from "@/components/logo";
 import { IProduct } from "@/models/Product";
 import { AxiosInstance } from "@/util/ApiUtil";
 import {
@@ -36,8 +34,6 @@ const SearchResultPage = ({}: Props) => {
 
   return (
     <>
-      <DarkWebAppBar></DarkWebAppBar>
-      <Logo></Logo>
       <Container>
         {finding == true ? (
           <Box textAlign={"center"} paddingTop={15}>

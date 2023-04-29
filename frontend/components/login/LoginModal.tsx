@@ -1,11 +1,19 @@
-import { Box, Button, Modal, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Modal,
+  TextField,
+  Typography,
+} from "@mui/material";
+import React, { BaseSyntheticEvent, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginForm, loginSchema } from "./LoginValidator";
 import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
 import { modalStyle } from "@/constant/formStyle";
+import ErrorMessage from "../ErrorMessage";
 
 type Props = {
   isOpen: boolean;
@@ -21,27 +29,28 @@ const LoginModal = ({ isOpen, onClose }: Props) => {
     formState: { errors },
   } = useForm<LoginForm>({ resolver: yupResolver(loginSchema) });
 
-  const onSubmit: SubmitHandler<LoginForm> = async (data: LoginForm) => {
+  const onSubmit: SubmitHandler<LoginForm> = async (
+    data: LoginForm,
+    event: BaseSyntheticEvent<object, any, any> | undefined
+  ) => {
+    if (event) event.preventDefault();
+
     setIsLoading(true);
 
     try {
-      console.log(data);
-      // await signIn("credentials", {
-      //   ...data,
-      //   redirect: false,
-      // }).then((res) => {
-      //   if (res?.ok) {
-      //     toast.success("Login Successfully!!!");
-      //     onClose();
-      //   }
-      //   if (res?.error) {
-      //     toast.error("Login Failed!!!");
-      //   }
-      // });
-      // toast.success("Login Successfully!!!");
+      const res = await signIn("credentials", {
+        username: data.username,
+        password: data.password,
+        redirect: false,
+      });
+      if (res?.ok) {
+        toast.success("Login Successfully!!!");
+      } else {
+        toast.error("Wrong Username or Password!!!");
+      }
     } catch (error) {
       console.log(error);
-      toast.error("Login Failed!!!");
+      toast.error("Login Error!!!");
     } finally {
       setIsLoading(false);
     }
@@ -81,11 +90,8 @@ const LoginModal = ({ isOpen, onClose }: Props) => {
                 error={errors.username ? true : false}
               />
               {errors.username && (
-                <Typography variant="body2" alignSelf="start">
-                  ** {errors.username?.message}
-                </Typography>
+                <ErrorMessage txt={errors.username?.message} />
               )}
-
               <TextField
                 fullWidth
                 id="password"
@@ -97,9 +103,7 @@ const LoginModal = ({ isOpen, onClose }: Props) => {
                 error={errors.password ? true : false}
               />
               {errors.password && (
-                <Typography variant="body2" alignSelf="start">
-                  ** {errors.password?.message}
-                </Typography>
+                <ErrorMessage txt={errors.password?.message} />
               )}
             </Box>
             <Box
@@ -116,13 +120,17 @@ const LoginModal = ({ isOpen, onClose }: Props) => {
                 sx={{
                   fontWeight: 700,
                   fontSize: "16px",
+                  display: "flex",
+                  gap: "10px",
                 }}
               >
-                Login
+                {isLoading && <CircularProgress size={20} />}
+                <span>Login</span>
               </Button>
               <Button
                 variant="outlined"
                 onClick={onClose}
+                disabled={isLoading}
                 sx={{
                   fontWeight: 700,
                   fontSize: "16px",
