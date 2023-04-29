@@ -117,11 +117,21 @@ export default function DarkWebAppBar({}: AppBarProp) {
                 display="flex"
                 columnGap="10px"
                 fontWeight="700"
-                border="1px solid white"
+                // border="1px solid white"
                 padding="7px"
                 borderRadius="5px"
               >
                 <p>{session.user.username}</p>
+              </Typography>
+              <Typography
+                display="flex"
+                columnGap="10px"
+                fontWeight="700"
+                border="1px solid white"
+                padding="7px"
+                borderRadius="5px"
+              >
+                <p>Balance : 99999 BTC</p>
               </Typography>
               <Button
                 variant="outlined"
