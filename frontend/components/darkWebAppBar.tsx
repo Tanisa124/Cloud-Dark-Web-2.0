@@ -17,6 +17,7 @@ import { useState } from "react";
 import RegisterModal from "./register/RegisterModal";
 import LoginModal from "./login/LoginModal";
 import Logo from "./logo";
+import CartModal from "./cart/CartModal";
 import Link from "next/link";
 export interface AppBarProp {}
 
@@ -29,6 +30,7 @@ export default function DarkWebAppBar({}: AppBarProp) {
   const [isRegisterModalOpen, setIsRegisterModalOpen] =
     useState<boolean>(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
+  const [isCartModalOpen, setIsCartModalOpen] = useState<boolean>(false);
 
   const onToggleRegisterModal = () => {
     setIsRegisterModalOpen(!isRegisterModalOpen);
@@ -36,6 +38,10 @@ export default function DarkWebAppBar({}: AppBarProp) {
   const onToggleLoginModal = () => {
     setIsLoginModalOpen(!isLoginModalOpen);
   };
+
+  const onToggleCartModal = ()=>{
+    setIsCartModalOpen(!isCartModalOpen);
+  }
 
   function onSubmit(data: any) {
     router.push("/search?keyword=" + data.keyword);

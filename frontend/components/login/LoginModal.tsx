@@ -142,6 +142,7 @@ const LoginModal = ({ isOpen, onClose }: Props) => {
           </Box>
         </form>
       </Modal>
+     
     </>
   );
 };
