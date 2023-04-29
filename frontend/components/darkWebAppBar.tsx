@@ -116,8 +116,12 @@ export default function DarkWebAppBar({}: AppBarProp) {
                 sx={{
                   color: "white",
                 }}
+                onClick={onToggleCartModal}
               ></ShoppingCartOutlinedIcon>
             </IconButton>
+            {isCartModalOpen ? (
+            <CartModal isOpen onClose={onToggleCartModal} />
+            ) : null}
             <Box display="flex" columnGap="10px">
               <Typography
                 display="flex"
