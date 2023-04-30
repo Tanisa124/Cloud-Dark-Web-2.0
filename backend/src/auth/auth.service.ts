@@ -39,6 +39,15 @@ export class AuthService {
     return searchDbResult
   }
 
+  async updateUserByUsername(username: string, new_balance: number){
+    const updateUser = await this.userModel.updateOne(
+      { username: username },
+      { $set: { balance: new_balance } },
+      { new: true }
+    )
+    return updateUser;
+  }
+  
 
   async register(authRegisterRequest: RegisterRequestDto) {
     const { username, email, password } = authRegisterRequest;
