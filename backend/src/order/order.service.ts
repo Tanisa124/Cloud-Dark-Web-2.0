@@ -11,8 +11,6 @@ import * as handlebars from 'handlebars';
 import * as path from 'path';
 import * as fs from 'fs';
 import Mail = require('nodemailer/lib/mailer');
-import { MailOptions } from 'nodemailer/lib/stream-transport'
-import { promisify } from 'util';
 
 @Injectable()
 export class OrderService {
