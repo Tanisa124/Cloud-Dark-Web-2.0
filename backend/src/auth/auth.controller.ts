@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, Post, Param } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthenticateRequestDto } from './dto/authenticate.requests.dto';
 import { RegisterRequestDto } from './dto/register.request.dto';
@@ -33,5 +33,10 @@ export class AuthController {
     } catch (e) {
       throw new BadRequestException(e.message);
     }
+  }
+
+  @Get(':username')
+  async getByUsername(@Param('username') username: string){
+    return await this.authService.findUserByUsername(username)
   }
 }
