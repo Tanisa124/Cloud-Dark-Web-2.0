@@ -55,6 +55,19 @@ const CartModal = ({ isOpen, onClose }: Props) => {
             >
               รวม {calculateTotal()} BTC
             </Typography>
+            <Button
+            variant="contained"
+            disabled={isLoading}
+            sx={{
+              fontWeight: 700,
+              fontSize: "16px",
+              display: "flex",
+              gap: "10px",
+              width: "100%"
+            }}
+          >
+            <span>สั่งซื้อ</span>
+          </Button>
         </Box>
       </Modal>
     </>
