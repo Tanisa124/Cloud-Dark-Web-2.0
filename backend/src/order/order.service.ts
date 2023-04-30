@@ -2,7 +2,6 @@ import { Inject, Injectable, BadRequestException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { AuthService } from 'src/auth/auth.service';
-import { UserDto } from 'src/auth/dto/user.dto';
 import { Order } from 'src/schemas/order.schema';
 import { IProduct } from './utils/product.interface';
 import { OrderDto } from './dto/order.dto';
@@ -28,8 +27,8 @@ export class OrderService {
         return await createOrderHist.save()
     }
 
-    async OrderRequest(user: UserDto, products: IProduct[], createdAt: Date){
-        const searchDbResult = await this.authService.findUserByUsername(user.username)
+    async OrderRequest(user: string, products: IProduct[], createdAt: Date){
+        const searchDbResult = await this.authService.findUserByUsername(user)        
         let total_expense: number;
         total_expense = 0
         const js_products = JSON.parse(JSON.stringify(products))
@@ -40,17 +39,18 @@ export class OrderService {
                 console.log('fail to access price in item')
             }
         }
+        console.log('here')
         const balance_before_purchased = searchDbResult.balance
         const new_balance = (balance_before_purchased - total_expense)
         try {
             const createOrderHistDto = new OrderDto();
-            createOrderHistDto.user = {username: user.username, email: user.email};
+            createOrderHistDto.username = user;
             createOrderHistDto.products = products
             createOrderHistDto.createdAt = new Date(createdAt)
-            
+            console.log('here2')
             this.addOrderHistory(createOrderHistDto);
-    
-            await this.authService.updateUserByUsername(user.username, new_balance)
+            console.log('here3')
+            await this.authService.updateUserByUsername(user, new_balance)
             return this.SuccessOrderMSG(new_balance)
         } catch(error){
             throw new BadRequestException('Fail to Order')
