@@ -1,4 +1,6 @@
 import Layout from "@/components/Layout";
+import ToasterMUI from "@/components/Toaster";
+import { wrapper } from "@/store/store";
 import "@/styles/globals.css";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { SessionProvider } from "next-auth/react";
@@ -16,7 +18,7 @@ const darkTheme = createTheme({
   },
 });
 
-export default function App({
+function App({
   Component,
   pageProps: { session, ...pageProps },
 }: AppProps) {
@@ -39,3 +41,5 @@ export default function App({
     </ThemeProvider>
   );
 }
+
+export default wrapper.withRedux(App);
