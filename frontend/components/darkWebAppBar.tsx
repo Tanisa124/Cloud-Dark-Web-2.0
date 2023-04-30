@@ -39,9 +39,9 @@ export default function DarkWebAppBar({}: AppBarProp) {
     setIsLoginModalOpen(!isLoginModalOpen);
   };
 
-  const onToggleCartModal = ()=>{
+  const onToggleCartModal = () => {
     setIsCartModalOpen(!isCartModalOpen);
-  }
+  };
 
   function onSubmit(data: any) {
     router.push("/search?keyword=" + data.keyword);
@@ -65,7 +65,7 @@ export default function DarkWebAppBar({}: AppBarProp) {
           transform: "translateX(-80px)",
         }}
       >
-        <Link href="/">
+        <Link href="/products">
           <Logo />
         </Link>
       </div>
@@ -120,7 +120,7 @@ export default function DarkWebAppBar({}: AppBarProp) {
               ></ShoppingCartOutlinedIcon>
             </IconButton>
             {isCartModalOpen ? (
-            <CartModal isOpen onClose={onToggleCartModal} />
+              <CartModal isOpen onClose={onToggleCartModal} />
             ) : null}
             <Box display="flex" columnGap="10px">
               <Typography
@@ -141,7 +141,7 @@ export default function DarkWebAppBar({}: AppBarProp) {
                 padding="7px"
                 borderRadius="5px"
               >
-                <p>Balance : 99999 BTC</p>
+                <p>ยอดเงินคงเหลือ : 99999 BTC</p>
               </Typography>
               <Button
                 variant="outlined"

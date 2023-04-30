@@ -2,56 +2,25 @@ import {
   Box,
   Button,
   Divider,
-  Grid,
   List,
   ListItem,
-  Paper,
   Typography,
 } from "@mui/material";
 import React from "react";
 import OrderItem from "./OrderItem";
-
-const products = [
-  {
-    id: 1,
-    name: "Product 1",
-    amount: 2,
-    price: 10,
-  },
-  {
-    id: 2,
-    name: "Product 2",
-    amount: 1,
-    price: 5,
-  },
-  {
-    id: 3,
-    name: "Product 3",
-    amount: 3,
-    price: 15,
-  },
-  {
-    id: 4,
-    name: "Product 4",
-    amount: 4,
-    price: 15,
-  },
-  {
-    id: 5,
-    name: "Product 5",
-    amount: 5,
-    price: 15,
-  },
-];
+import { useSelector } from "react-redux";
+import { CartItem, selectCartState } from "@/store/CartSlice";
 
 const OrderContainer = () => {
-  const totalAmount = products.reduce(
-    (total, product) => total + product.amount,
+  const cartState: CartItem[] = useSelector(selectCartState);
+
+  const totalAmount = cartState.reduce(
+    (total, cartItem) => total + cartItem.amount,
     0
   );
 
-  const totalPrice = products.reduce(
-    (total, product) => total + product.amount * product.price,
+  const totalPrice = cartState.reduce(
+    (total, cartItem) => total + cartItem.amount * cartItem.price,
     0
   );
 
@@ -77,15 +46,15 @@ const OrderContainer = () => {
       <Typography variant="h4" component="h1" fontWeight="700">
         Your Orders
       </Typography>
-      {products.length !== 0 ? (
+      {cartState.length !== 0 ? (
         <List
           sx={{ display: "flex", flexDirection: "column", rowGap: "5px" }}
           component="nav"
         >
-          {products.map((product) => (
+          {cartState.map((cartItem) => (
             <>
-              <ListItem key={product.id}>
-                <OrderItem product={product} />
+              <ListItem key={cartItem._id}>
+                <OrderItem cartItem={cartItem} />
               </ListItem>
               <Divider sx={{ borderWidth: "2px" }} />
             </>

@@ -18,13 +18,10 @@ const darkTheme = createTheme({
   },
 });
 
-function App({
-  Component,
-  pageProps: { session, ...pageProps },
-}: AppProps) {
+function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <ThemeProvider theme={darkTheme}>
-      <SessionProvider session={session} >
+      <SessionProvider session={session} refetchInterval={60 * 10}>
         <Toaster
           position="top-center"
           toastOptions={{

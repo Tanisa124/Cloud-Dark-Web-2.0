@@ -1,12 +1,13 @@
+import { CartItem } from "@/store/CartSlice";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 
 type Props = {
-  product: any;
+  cartItem: CartItem;
 };
 
-const OrderItem = ({ product }: Props) => {
+const OrderItem = ({ cartItem }: Props) => {
   return (
     <Box
       display="flex"
@@ -16,14 +17,14 @@ const OrderItem = ({ product }: Props) => {
     >
       <Box display="flex" columnGap="20px" alignItems="center">
         <Image
-          src="https://i.ytimg.com/vi/dw7RsXajh8c/maxresdefault.jpg"
-          alt="ปลาหมึกปีศาจ"
+          src={cartItem.imageURL}
+          alt={cartItem.title}
           //   fill
           width={200}
           height={100}
           style={{ borderRadius: "10px" }}
         />
-        <Typography variant="h5">{product.name}</Typography>
+        <Typography variant="h5">{cartItem.title}</Typography>
       </Box>
       <Box
         display="flex"
@@ -33,9 +34,9 @@ const OrderItem = ({ product }: Props) => {
         justifyContent="center"
       >
         <Typography variant="h5" fontWeight="600">
-          {product.price} BTC
+          {cartItem.price} BTC
         </Typography>
-        <Typography variant="body1">Qty: {product.amount}</Typography>
+        <Typography variant="body1">Qty: {cartItem.amount}</Typography>
       </Box>
     </Box>
   );
