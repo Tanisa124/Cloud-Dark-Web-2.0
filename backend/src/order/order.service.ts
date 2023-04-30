@@ -56,7 +56,11 @@ export class OrderService {
         const templatePath = path.join(__dirname, './utils/success-order.html');
         try {
             const source = fs.readFileSync(templatePath, { encoding: 'utf-8' });
+
+            //username & items should be in HTML, no idea it not there
             const template: HandlebarsTemplateDelegate<EmailPayload> = handlebars.compile(source);
+
+
             const html: string = template(templateData);
             
             const updatedData: Mail.Options = {
