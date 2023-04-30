@@ -39,7 +39,6 @@ export class OrderService {
                 console.log('fail to access price in item')
             }
         }
-        console.log('here')
         const balance_before_purchased = searchDbResult.balance
         const new_balance = (balance_before_purchased - total_expense)
         try {
@@ -47,9 +46,7 @@ export class OrderService {
             createOrderHistDto.username = user;
             createOrderHistDto.products = products
             createOrderHistDto.createdAt = new Date(createdAt)
-            console.log('here2')
             this.addOrderHistory(createOrderHistDto);
-            console.log('here3')
             await this.authService.updateUserByUsername(user, new_balance)
             return this.SuccessOrderMSG(new_balance)
         } catch(error){
