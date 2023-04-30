@@ -14,7 +14,6 @@ import { Users } from 'src/schemas/users.schema';
 import { LoginResponseDto } from './dto/loginResponse.dto';
 import { CreateUserDto } from './dto/createUser.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { userInfo } from 'os';
 
 @Injectable()
 export class AuthService {
