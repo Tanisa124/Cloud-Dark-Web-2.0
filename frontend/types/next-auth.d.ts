@@ -8,6 +8,7 @@ declare module "next-auth" {
   export interface User {
     username: string;
     email: string;
+    balance: number;
   }
   export interface Session {
     user: User;

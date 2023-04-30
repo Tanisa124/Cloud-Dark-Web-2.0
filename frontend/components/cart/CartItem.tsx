@@ -31,7 +31,13 @@ const CartItem = ({ id, title, imageURL, amount, price }: CartItemProps) => {
         padding="10px"
       >
         <Box display="flex" columnGap="10px" alignItems="center">
-          <Image src={imageURL} alt={title} width={80} height={80} />
+          <Image
+            src={imageURL}
+            alt={title}
+            width="50"
+            height={"50"}
+            style={{ height: "50px", width: "auto" }}
+          />
           <Box
             component="div"
             sx={{ whiteSpace: "unset", wordBreak: "break-all" }}

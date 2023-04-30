@@ -1,17 +1,24 @@
 import {
   Box,
   Button,
+  CircularProgress,
   Divider,
   List,
   ListItem,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import OrderItem from "./OrderItem";
 import { useSelector } from "react-redux";
 import { CartItem, selectCartState } from "@/store/CartSlice";
+import { AxiosInstance } from "@/util/ApiUtil";
+import { OrderRequest } from "@/models/Order";
+import { useSession } from "next-auth/react";
+import { toast } from "react-hot-toast";
 
 const OrderContainer = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const { data: session, update } = useSession();
   const cartState: CartItem[] = useSelector(selectCartState);
 
   const totalAmount = cartState.reduce(
@@ -24,9 +31,55 @@ const OrderContainer = () => {
     0
   );
 
-  const handleOrder = () => {
-    // Handle order button click
-    console.log("Order button clicked");
+  const isValidOrder = () => {
+    if (!session) return false;
+    return session.user.balance >= totalPrice;
+  };
+
+  const handleOrder = async () => {
+    setIsLoading(true);
+
+    if (!isValidOrder() || !session) {
+      toast.error("Invalid Order");
+      setIsLoading(false);
+      return;
+    }
+
+    const orderRequest: OrderRequest = {
+      user: {
+        username: session.user.username,
+      },
+      products: cartState.map((cartItem) => ({
+        _id: cartItem._id,
+        title: cartItem.title,
+        description: "",
+        price: cartItem.price,
+        imageURL: cartItem.imageURL,
+        amount: cartItem.amount,
+      })),
+      createdAt: new Date(),
+    };
+
+    try {
+      const res = await AxiosInstance.post("/order/request", orderRequest);
+      if (res.status === 201) {
+        const newSession = {
+          ...session,
+          user: {
+            ...session.user,
+            balance: 20,
+          },
+        };
+        await update(newSession);
+        toast.success("Order Successfully!!!");
+      } else {
+        toast.error("Order Failed");
+      }
+    } catch (error) {
+      toast.error("Order Error");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -38,9 +91,6 @@ const OrderContainer = () => {
         alignItems: "center",
         rowGap: "20px",
         padding: "20px",
-        // backgroundColor: "#696969",
-        // borderRadius: "20px",
-        // margin: "40px",
       }}
     >
       <Typography variant="h4" component="h1" fontWeight="700">
@@ -67,26 +117,36 @@ const OrderContainer = () => {
       <Box
         textAlign="end"
         display="flex"
-        flexDirection="column"
+        flexDirection="row"
         justifyContent="end"
-        rowGap="10px"
+        columnGap="20px"
         width="50vw"
       >
-        <Typography variant="h5" component="h2">
-          Total Amount: {totalAmount}
-        </Typography>
-        <Typography variant="h5" component="h2" fontWeight="600">
-          Total Payment: {totalPrice} BTC
-        </Typography>
-      </Box>
-      <Box>
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{ fontWeight: "bold", fontSize: 24, borderRadius: "10px" }}
-        >
-          Place Order
-        </Button>
+        <Box>
+          <Typography variant="h5" component="h2">
+            Total Amount: {totalAmount}
+          </Typography>
+          <Typography variant="h5" component="h2" fontWeight="600">
+            Total Payment: {totalPrice} BTC
+          </Typography>
+        </Box>
+        <Box>
+          <Button
+            variant="contained"
+            type="submit"
+            disabled={isLoading}
+            sx={{
+              fontWeight: 600,
+              fontSize: "20px",
+              display: "flex",
+              gap: "10px",
+            }}
+            onClick={handleOrder}
+          >
+            {isLoading && <CircularProgress size={20} />}
+            <span>Place Order</span>
+          </Button>
+        </Box>
       </Box>
     </Box>
   );

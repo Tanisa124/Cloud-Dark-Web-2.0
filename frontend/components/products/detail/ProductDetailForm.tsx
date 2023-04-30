@@ -54,14 +54,11 @@ const ProductDetailForm = ({ product, handleBuyProduct }: Props) => {
             <Button
               size="large"
               variant="contained"
+              sx={{ fontSize: "20px", fontWeight: 500 }}
               onClick={() => handleBuyProduct()}
             >
-              <ShoppingCartOutlinedIcon
-                sx={{
-                  color: "white",
-                }}
-              ></ShoppingCartOutlinedIcon>
-              <Typography sx={{ color: "white" }}>เพิ่มไปยังรถเข็น</Typography>
+              <ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon>
+              เพิ่มไปยังรถเข็น
             </Button>
           </Box>
         </Container>

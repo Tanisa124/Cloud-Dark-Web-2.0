@@ -36,15 +36,12 @@ export default NextAuth({
     },
     session({ session, token }) {
       if (token.user) {
-        let payload = token.user.idToken.payload as any;
-        session.user = {
-          id: payload.sub,
-          username: payload["cognito:username"],
-          email: payload.email,
-        };
-        session.accessToken = token.user.accessToken.jwtToken;
-        session.refreshToken = token.user.refreshToken.token;
+        session.user = token.user.user;
+        session.user.balance = token.user.balance;
+        session.accessToken = token.user.accessToken;
+        session.refreshToken = token.user.refreshToken;
       }
+      console.log("session: ", session);
       return session;
     },
   },

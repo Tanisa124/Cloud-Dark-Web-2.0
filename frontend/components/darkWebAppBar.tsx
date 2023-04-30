@@ -140,8 +140,9 @@ export default function DarkWebAppBar({}: AppBarProp) {
                 border="1px solid white"
                 padding="7px"
                 borderRadius="5px"
+                whiteSpace="nowrap"
               >
-                <p>ยอดเงินคงเหลือ : 99999 BTC</p>
+                <p>ยอดเงินคงเหลือ : {session.user.balance} BTC</p>
               </Typography>
               <Button
                 variant="outlined"

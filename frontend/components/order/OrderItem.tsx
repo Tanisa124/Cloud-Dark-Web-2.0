@@ -22,7 +22,7 @@ const OrderItem = ({ cartItem }: Props) => {
           //   fill
           width={200}
           height={100}
-          style={{ borderRadius: "10px" }}
+          style={{ borderRadius: "10px", width: "auto" }}
         />
         <Typography variant="h5">{cartItem.title}</Typography>
       </Box>

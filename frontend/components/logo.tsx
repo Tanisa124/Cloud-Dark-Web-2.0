@@ -10,6 +10,7 @@ export default function Logo() {
         textShadow: "0 0 15px #FF0000",
         scale: "0.5",
       }}
+      whiteSpace="nowrap"
       textAlign="start"
     >
       DARK-WEB 2.0
