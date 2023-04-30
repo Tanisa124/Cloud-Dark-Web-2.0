@@ -8,17 +8,43 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { RegisterRequestDto } from './dto/register.request.dto';
 import { AuthenticateRequestDto } from './dto/authenticate.requests.dto';
+import { Model } from 'mongoose';
+import { Users } from 'src/schemas/users.schema';
+import { UserDto } from './dto/user.dto';
+import { LoginResponseDto } from './dto/loginResponse.dto';
+import { CreateUserDto } from './dto/createUser.dto';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class AuthService {
   private userPool: CognitoUserPool;
 
-  constructor(private configService: ConfigService) {
+  constructor(private configService: ConfigService, @InjectModel(Users.name) private userModel : Model<Users>) {
     this.userPool = new CognitoUserPool({
       UserPoolId: this.configService.get<string>('AWS_COGNITO_USER_POOL_ID'),
       ClientId: this.configService.get<string>('AWS_COGNITO_CLIENT_ID'),
     });
   }
+
+  async addUser(dto: CreateUserDto){
+    const createUser = new this.userModel(dto);
+    return await createUser.save();
+  }
+
+  async findUserByUsername(username: string){
+    const searchDbResult = await this.userModel.findOne({username: username})
+    if (searchDbResult == null){
+      this.addUser({
+        username: username,
+        balance: 100,
+      })
+      return 100
+    }
+    
+    return searchDbResult.balance
+
+  }
+
 
   async register(authRegisterRequest: RegisterRequestDto) {
     const { username, email, password } = authRegisterRequest;
@@ -79,6 +105,7 @@ export class AuthService {
       return newUser.authenticateUser(authenticationDetails, {
         onSuccess: (result) => {
           resolve(result);
+          this.findUserByUsername(username)
         },
         onFailure: (err) => {
           reject(err);
