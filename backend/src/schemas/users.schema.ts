@@ -10,6 +10,9 @@ export class Users{
 
     @Prop()
     balance: number;
+
+    @Prop()
+    email: string;
 }
 
 export const UsersSchema = SchemaFactory.createForClass(Users);
