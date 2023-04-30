@@ -6,4 +6,7 @@ export class CreateUserDto {
 
     @IsNumber()
     balance: number;
+
+    @IsString()
+    email: string;
 }

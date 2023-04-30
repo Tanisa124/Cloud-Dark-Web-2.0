@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import {
   AuthenticationDetails,
   CognitoUser,
@@ -10,7 +10,6 @@ import { RegisterRequestDto } from './dto/register.request.dto';
 import { AuthenticateRequestDto } from './dto/authenticate.requests.dto';
 import { Model } from 'mongoose';
 import { Users } from 'src/schemas/users.schema';
-import { UserDto } from './dto/user.dto';
 import { LoginResponseDto } from './dto/loginResponse.dto';
 import { CreateUserDto } from './dto/createUser.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -34,15 +33,9 @@ export class AuthService {
   async findUserByUsername(username: string){
     const searchDbResult = await this.userModel.findOne({username: username})
     if (searchDbResult == null){
-      this.addUser({
-        username: username,
-        balance: 100,
-      })
-      return 100
+      throw new BadRequestException('no user in mongodb');
     }
-    
     return searchDbResult.balance
-
   }
 
 
@@ -58,7 +51,12 @@ export class AuthService {
           if (!result) {
             reject(err);
           } else {
-            resolve(result.user);
+            resolve(result.user),
+            this.addUser({
+              username: username,
+              balance: 100,
+              email: email
+            })
           }
         },
       );
@@ -90,6 +88,11 @@ export class AuthService {
     });
   }
 
+  LoginResponse(dto: LoginResponseDto){
+    const response = dto
+    return response
+  }
+
   async authenticate(user: AuthenticateRequestDto) {
     const { username, password } = user;
     const authenticationDetails = new AuthenticationDetails({
@@ -102,10 +105,9 @@ export class AuthService {
     };
     const newUser = new CognitoUser(userData);
     return new Promise((resolve, reject) => {
-      return newUser.authenticateUser(authenticationDetails, {
+      const body = newUser.authenticateUser(authenticationDetails, {
         onSuccess: (result) => {
           resolve(result);
-          this.findUserByUsername(username)
         },
         onFailure: (err) => {
           reject(err);
