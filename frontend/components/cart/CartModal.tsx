@@ -25,19 +25,24 @@ const CartModal = ({ isOpen, onClose }: Props) => {
   return (
     <>
       <Modal open={isOpen} onClose={onClose}>
-        <Box sx={modalStyle}>
+        <Box
+          sx={modalStyle}
+          display="flex"
+          flexDirection="column"
+          rowGap="10px"
+        >
           <Typography
             variant="h4"
             gutterBottom
             textAlign="center"
             fontWeight="700"
           >
-            รถเข็น
+            Cart
           </Typography>
           <Paper
             sx={{
-              height: "30vh",
-              width: 350,
+              height: "50vh",
+              width: "40vw",
               overflowY: "auto",
               overflowX: "inherit",
             }}
@@ -63,7 +68,7 @@ const CartModal = ({ isOpen, onClose }: Props) => {
             textAlign="center"
             fontWeight="700"
           >
-            รวม {calculateTotal()} BTC
+            Total Payment: {calculateTotal()} BTC
           </Typography>
           <Link href="/order">
             <Button
@@ -78,7 +83,7 @@ const CartModal = ({ isOpen, onClose }: Props) => {
                 width: "100%",
               }}
             >
-              <span>สั่งซื้อ</span>
+              <span>Order</span>
             </Button>
           </Link>
         </Box>

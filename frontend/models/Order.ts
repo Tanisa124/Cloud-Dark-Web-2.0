@@ -1,10 +1,15 @@
-import { User } from "next-auth";
-import { IProduct } from "./Product";
-
 export interface OrderRequest {
-  user: OrderUser;
-  products: IProduct[];
+  username: string;
+  products: OrderProduct[];
   createdAt: Date;
+}
+
+export interface OrderProduct {
+  title: string;
+  price: number;
+  imageURL: string;
+  amount: number;
+  _id: string;
 }
 
 export interface OrderResponse {

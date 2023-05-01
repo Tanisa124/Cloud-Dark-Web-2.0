@@ -24,9 +24,9 @@ const ProductDetailContainer = ({ product }: Props) => {
           price: product.price,
         })
       );
-      toast.success("เพิ่มไปยังรถเข็นแล้ว");
+      toast.success("Add to cart successfully!!!");
     } else {
-      toast.error("กรุณาเข้าสู่ระบบก่อน");
+      toast.error("Please login to buy product!!!");
     }
   };
   return (

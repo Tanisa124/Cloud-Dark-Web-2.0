@@ -127,11 +127,12 @@ export default function DarkWebAppBar({}: AppBarProp) {
                 display="flex"
                 columnGap="10px"
                 fontWeight="700"
-                // border="1px solid white"
+                border="1px solid white"
                 padding="7px"
                 borderRadius="5px"
+                whiteSpace="nowrap"
               >
-                <p>{session.user.username}</p>
+                <p>Your Balance: {session.user.balance.toPrecision(5)} BTC</p>
               </Typography>
               <Typography
                 display="flex"
@@ -140,10 +141,10 @@ export default function DarkWebAppBar({}: AppBarProp) {
                 border="1px solid white"
                 padding="7px"
                 borderRadius="5px"
-                whiteSpace="nowrap"
               >
-                <p>ยอดเงินคงเหลือ : {session.user.balance} BTC</p>
+                <p>{session.user.username}</p>
               </Typography>
+
               <Button
                 variant="outlined"
                 sx={{ fontWeight: 500 }}

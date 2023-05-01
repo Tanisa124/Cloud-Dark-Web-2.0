@@ -34,12 +34,15 @@ export default NextAuth({
       }
       return token;
     },
-    session({ session, token }) {
+    async session({ session, token }) {
       if (token.user) {
         session.user = token.user.user;
-        session.user.balance = token.user.balance;
         session.accessToken = token.user.accessToken;
         session.refreshToken = token.user.refreshToken;
+        const res = await AxiosInstance.get(
+          `/auth/${token.user.user.username}`
+        );
+        session.user.balance = res.data.balance;
       }
       console.log("session: ", session);
       return session;

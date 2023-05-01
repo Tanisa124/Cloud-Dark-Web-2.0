@@ -19,7 +19,6 @@ const OrderItem = ({ cartItem }: Props) => {
         <Image
           src={cartItem.imageURL}
           alt={cartItem.title}
-          //   fill
           width={200}
           height={100}
           style={{ borderRadius: "10px", width: "auto" }}

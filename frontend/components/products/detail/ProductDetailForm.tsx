@@ -49,16 +49,21 @@ const ProductDetailForm = ({ product, handleBuyProduct }: Props) => {
               sx={{ paddingRight: 0, marginTop: 10, fontWeight: "bold" }}
               gutterBottom
             >
-              ราคา {product.price} BTC
+              Price: {product.price} BTC
             </Typography>
             <Button
               size="large"
               variant="contained"
-              sx={{ fontSize: "20px", fontWeight: 500 }}
+              sx={{
+                fontSize: "20px",
+                fontWeight: 600,
+                display: "flex",
+                columnGap: "10px",
+              }}
               onClick={() => handleBuyProduct()}
             >
               <ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon>
-              เพิ่มไปยังรถเข็น
+              <p>Add to cart</p>
             </Button>
           </Box>
         </Container>
