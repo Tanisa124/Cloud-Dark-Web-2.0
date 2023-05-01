@@ -9,10 +9,10 @@ export class OrderController {
     @Post('request')
     async request(@Body() orderRequest: OrderDto) {
         try {
-            const user = orderRequest.user
+            const username = orderRequest.username
             const products = orderRequest.products
             const createdAt = orderRequest.createdAt
-            return await this.orderService.OrderRequest(user, products, createdAt);
+            return await this.orderService.OrderRequest(username, products, createdAt);
         } catch (e){
             throw new BadRequestException(e.message)
         }

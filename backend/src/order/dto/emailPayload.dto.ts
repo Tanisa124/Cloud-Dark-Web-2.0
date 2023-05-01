@@ -1,7 +1,7 @@
 import { IProduct } from "../utils/product.interface";
 
-export class OrderDto{
+export interface EmailPayload {
+    email: string;
     username: string;
-    products: IProduct[];
-    createdAt: Date;
-}
+    items: IProduct[];
+  }

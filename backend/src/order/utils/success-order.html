@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Confrim Order!!!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body {
+            font-family: calibri, 'DejaVu Sans', Arial, Helvetica, sans-serif;
+            background-color: #cbd5e1;
+        }
+        .container {
+            margin: 0 auto;
+            width: 600px;
+            padding: 10px 30px 30px 30px;
+            box-shadow: 0 0 4px #ddd;
+            background-color: #f3f4f6;
+            border-radius: 5px;
+        }
+        a.link {
+            border: solid 1px #0ea5e9;
+            background-color: #0ea5e9;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            display: block;
+            width: 400px;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 50px;
+            border-radius: 5px;
+        }
+        .text-blue {
+            color: #0ea5e9;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-blue">Confrim Order!!!</h1>
+    <div>Congratulations <b class="text-blue">{{user}}</b> !</div>
+    <p>
+        Your purchased has been confirmed on our platform
+        <br/><br/>
+        Find your purchased items information below:
+        <br/><br/>
+        <span style="font-size: 14px; font-weight: bold">
+            Items : <span class="text-blue">{{items}}</span>
+        </span>
+        <br/><br/>
+        The delivery will be sent to you within 15 minutes. Please wait patiently.
+    </p>
+    <br>
+    <p>
+        Regards, <br />
+        <em>DarkWeb 2.0</em>
+    </p>
+</div>
+</body>
+</html>
