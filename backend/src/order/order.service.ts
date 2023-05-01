@@ -80,14 +80,14 @@ export class OrderService {
         return 'Send email succesfully';}
         
 
-        async OrderRequest(user: string, products: IProduct[], createdAt: Date){
+        async OrderRequest(user: string, products: IProduct[], createdAt: Date){ 
             const searchDbResult = await this.authService.findUserByUsername(user)        
             let total_expense: number;
             total_expense = 0
             const js_products = JSON.parse(JSON.stringify(products))
             for (const item of js_products){
-                if (item['price']){
-                    total_expense = (item['price'] + total_expense)
+                if (item['price'] && item['amount']){
+                    total_expense = ((item['price']*item['amount']) + total_expense)
                 } else{
                     console.log('fail to access price in item')
                 }
