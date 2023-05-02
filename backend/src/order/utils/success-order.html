@@ -38,15 +38,24 @@
 <div class="container">
     <h1 class="text-blue">Confrim Order!!!</h1>
     <div>Congratulations <b class="text-blue">{{user}}</b> !</div>
+    <div>Email: <b class="text-blue">{{email}}</b></div>
+    <div>Username: <b class="text-blue">{{username}}</b></div>
     <p>
         Your purchased has been confirmed on our platform
         <br/><br/>
         Find your purchased items information below:
         <br/><br/>
-        <span style="font-size: 14px; font-weight: bold">
-            Items : <span class="text-blue">{{items}}</span>
-        </span>
+        <div >
+            {{#each items}}
+            <div style="display: flex; column-gap: 10px; justify-content: center; align-items: center;">
+                <img src="{{{imageURL}}}" style="width: auto; height: 50px;"/>
+                <p class="text-blue"><strong>{{title}}</strong>   [ Qty: {{amount}} / {{price}} BTC ]</p>
+            </div>
+            {{/each}}
+        </div>
         <br/><br/>
+        <p style="font-size: medium; font-weight: 500;">Total Payment: <strong>{{ total_expense }} BTC</strong> </p>
+        <p style="font-size: medium; font-weight: 500;">Your balance after purchased: <strong>{{ new_balance }} BTC</strong></p>
         The delivery will be sent to you within 15 minutes. Please wait patiently.
     </p>
     <br>
@@ -57,3 +66,4 @@
 </div>
 </body>
 </html>
+

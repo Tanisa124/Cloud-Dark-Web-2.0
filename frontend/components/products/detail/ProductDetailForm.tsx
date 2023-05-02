@@ -49,7 +49,7 @@ const ProductDetailForm = ({ product, handleBuyProduct }: Props) => {
               sx={{ paddingRight: 0, marginTop: 10, fontWeight: "bold" }}
               gutterBottom
             >
-              Price: {product.price} BTC
+              {product.price} BTC
             </Typography>
             <Button
               size="large"

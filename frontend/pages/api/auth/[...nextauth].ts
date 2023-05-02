@@ -44,7 +44,6 @@ export default NextAuth({
         );
         session.user.balance = res.data.balance;
       }
-      console.log("session: ", session);
       return session;
     },
   },
