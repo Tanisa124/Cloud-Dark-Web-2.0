@@ -148,7 +148,7 @@ export default function DarkWebAppBar({}: AppBarProp) {
               <Button
                 variant="outlined"
                 sx={{ fontWeight: 500 }}
-                onClick={() => signOut({ callbackUrl: "/" })}
+                onClick={() => signOut({ redirect: true })}
               >
                 Logout
               </Button>
