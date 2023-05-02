@@ -64,7 +64,7 @@ export class AuthService {
             resolve(result.user),
             this.addUser({
               username: username,
-              balance: 100,
+              balance: 1000,
               email: email
             })
           }
