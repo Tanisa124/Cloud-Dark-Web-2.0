@@ -9,8 +9,8 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import OrderItem from "./OrderItem";
-import { useSelector } from "react-redux";
-import { CartItem, selectCartState } from "@/store/CartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { CartItem, clearCart, selectCartState } from "@/store/CartSlice";
 import { AxiosInstance } from "@/util/ApiUtil";
 import { OrderRequest } from "@/models/Order";
 import { useSession } from "next-auth/react";
@@ -21,6 +21,7 @@ const OrderContainer = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { data: session } = useSession();
   const cartState: CartItem[] = useSelector(selectCartState);
+  const dispatch = useDispatch()
   const router = useRouter();
 
   const totalAmount = cartState.reduce(
@@ -77,7 +78,10 @@ const OrderContainer = () => {
           () => toast.success("Please check a receipt in your email."),
           1000
         );
-        setTimeout(() => router.push("/products"), 2000);
+        setTimeout(() => {
+          dispatch(clearCart(null));
+          router.push("/products")
+        }, 2000);
       } else {
         toast.error("Order Failed");
       }
