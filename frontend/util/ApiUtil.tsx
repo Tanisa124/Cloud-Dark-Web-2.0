@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const AxiosInstance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+    baseURL: 'https://tjq8s66rpn.us-east-1.awsapprunner.com',
     withCredentials: true
 })
