@@ -1,5 +1,6 @@
 import {
   AppBar,
+  Badge,
   Box,
   Button,
   IconButton,
@@ -19,6 +20,9 @@ import LoginModal from "./login/LoginModal";
 import Logo from "./logo";
 import CartModal from "./cart/CartModal";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { selectCartState } from "@/store/CartSlice";
 export interface AppBarProp {}
 
 export default function DarkWebAppBar({}: AppBarProp) {
@@ -26,6 +30,7 @@ export default function DarkWebAppBar({}: AppBarProp) {
 
   const { register, handleSubmit } = useForm();
   const router = useRouter();
+  const cartState = useSelector(selectCartState);
 
   const [isRegisterModalOpen, setIsRegisterModalOpen] =
     useState<boolean>(false);
@@ -94,7 +99,7 @@ export default function DarkWebAppBar({}: AppBarProp) {
             <form onSubmit={handleSubmit(onSubmit)}>
               <Stack alignItems={"center"} direction={"row"}>
                 <StyledTextField
-                  label="ค้นหา"
+                  label="Search"
                   variant="standard"
                   sx={{
                     padding: "5px",
@@ -111,13 +116,17 @@ export default function DarkWebAppBar({}: AppBarProp) {
                 </IconButton>
               </Stack>
             </form>
-            <IconButton>
-              <ShoppingCartOutlinedIcon
-                sx={{
-                  color: "white",
-                }}
-                onClick={onToggleCartModal}
-              ></ShoppingCartOutlinedIcon>
+            <IconButton sx={{ paddingX: "20px" }} onClick={onToggleCartModal}>
+              <Badge
+                badgeContent={cartState.length !== 0 ? cartState.length : null}
+                color="primary"
+              >
+                <ShoppingCartOutlinedIcon
+                  sx={{
+                    color: "white",
+                  }}
+                ></ShoppingCartOutlinedIcon>
+              </Badge>
             </IconButton>
             {isCartModalOpen ? (
               <CartModal isOpen onClose={onToggleCartModal} />
@@ -127,10 +136,11 @@ export default function DarkWebAppBar({}: AppBarProp) {
                 display="flex"
                 columnGap="10px"
                 fontWeight="700"
-                border="1px solid white"
+                border="2px solid #FFCC00"
                 padding="7px"
                 borderRadius="5px"
                 whiteSpace="nowrap"
+                color="#FFCC00"
               >
                 <p>Your Balance: {session.user.balance.toPrecision(5)} BTC</p>
               </Typography>
@@ -138,7 +148,7 @@ export default function DarkWebAppBar({}: AppBarProp) {
                 display="flex"
                 columnGap="10px"
                 fontWeight="700"
-                border="1px solid white"
+                border="2px solid white"
                 padding="7px"
                 borderRadius="5px"
               >
@@ -150,6 +160,7 @@ export default function DarkWebAppBar({}: AppBarProp) {
                 sx={{ fontWeight: 500 }}
                 onClick={async () => {
                   await signOut({ redirect: false });
+                  toast.success("Logout Successfully!!!");
                   router.push("/");
                 }}
               >

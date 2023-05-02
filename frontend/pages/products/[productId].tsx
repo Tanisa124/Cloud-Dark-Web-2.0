@@ -1,23 +1,15 @@
 import { IProduct } from "@/models/Product";
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { AxiosInstance } from "@/util/ApiUtil";
 import ProductDetailContainer from "@/components/products/detail/ProductDetailContainer";
+import { Box, CircularProgress } from "@mui/material";
+import { GetServerSideProps } from "next";
 
-interface Props {}
+interface Props {
+  product: IProduct;
+}
 
-const ProductDetailPage = ({}: Props) => {
-  const router = useRouter();
-  const [product, setProduct] = useState<IProduct>();
-  useEffect(() => {
-    const { productId } = router.query;
-    if (productId !== undefined) {
-      AxiosInstance.get("product/" + productId).then((response) => {
-        setProduct(response.data);
-      });
-    }
-  }, [router.isReady, router.query]);
-
+const ProductDetailPage = ({ product }: Props) => {
   return (
     <div>
       {product ? (
@@ -25,10 +17,36 @@ const ProductDetailPage = ({}: Props) => {
           <ProductDetailContainer product={product} />
         </div>
       ) : (
-        <div>Product not found</div>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          width="100vw"
+          height="80vh"
+        >
+          <CircularProgress size={40} />
+        </Box>
       )}
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { productId } = context.query;
+  try {
+    const res = await AxiosInstance.get(`/product/${productId}`);
+
+    return {
+      props: {
+        product: res.data,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      notFound: true,
+    };
+  }
 };
 
 export default ProductDetailPage;

@@ -13,8 +13,7 @@ export default function Home() {
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ params }) => {
-      await store.dispatch(setCartState(store.getState().cart.cartState)); 
-      console.log("State on server", store.getState());
+      await store.dispatch(setCartState(store.getState().cart.cartState));
       return {
         props: {
           cartState: store.getState().cart.cartState,
