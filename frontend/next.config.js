@@ -1,5 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async rewrites(){
+    return [
+      {
+        source: '/backend/:path*',
+        destination: process.env.NEXT_PUBLIC_BASE_URL + '/:path*', // Proxy to Backend
+      }
+    ]
+  },
   reactStrictMode: false,
   env: {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
