@@ -45,14 +45,12 @@
         <br/><br/>
         Find your purchased items information below:
         <br/><br/>
-        <div style="display: flex; row-gap: 10px;">
-            {{#each items}}
-            <div style="display: flex; column-gap: 10px; justify-content: center; align-items: center;">
-                <img src="{{{imageURL}}}" style="width: auto; height: 50px;"/>
-                <p class="text-blue"><strong>{{title}}</strong>   [ Qty: {{amount}} / {{price}} BTC ]</p>
-            </div>
-            {{/each}}
+        {{#each items}}
+        <div style="display: flex; column-gap: 10px; justify-content: center; align-items: center; margin-top: 5px; margin-bottom: 5px;">
+            <img src="{{{imageURL}}}" style="width: auto; height: 50px;"/>
+            <p class="text-blue"><strong>{{title}}</strong>   [ Qty: {{amount}} / {{price}} BTC ]</p>
         </div>
+        {{/each}}
         <br/><br/>
         <p style="font-size: medium; font-weight: 500;">Total Payment: <strong>{{ total_expense }} BTC</strong> </p>
         <p style="font-size: medium; font-weight: 500;">Your balance after purchased: <strong>{{ new_balance }} BTC</strong></p>
