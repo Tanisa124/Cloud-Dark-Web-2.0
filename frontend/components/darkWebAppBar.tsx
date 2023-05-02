@@ -148,7 +148,10 @@ export default function DarkWebAppBar({}: AppBarProp) {
               <Button
                 variant="outlined"
                 sx={{ fontWeight: 500 }}
-                onClick={() => signOut({ redirect: true })}
+                onClick={async () => {
+                  await signOut({ redirect: false });
+                  router.push("/");
+                }}
               >
                 Logout
               </Button>
