@@ -44,6 +44,12 @@ export const cartslice = createSlice({
         }
       }
     },
+    clearCart(state,action){
+      state.cartState = [];
+    },
+    setCartState(state,action){
+      state.cartState = action.payload
+    }
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -55,7 +61,7 @@ export const cartslice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart } = cartslice.actions;
+export const { addToCart, removeFromCart, clearCart, setCartState} = cartslice.actions;
 
 export const selectCartState = (state: AppState) => state.cart.cartState;
 

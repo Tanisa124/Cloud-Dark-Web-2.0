@@ -48,7 +48,7 @@ const CartModal = ({ isOpen, onClose }: Props) => {
             }}
           >
             <List>
-              {cartState.map((item) => {
+              {cartState.map((item : any) => {
                 return (
                   <CartItem
                     id={item._id}

@@ -1,15 +1,38 @@
-import { Action, ThunkAction, configureStore } from "@reduxjs/toolkit"
+import { Action, ThunkAction, combineReducers, configureStore } from "@reduxjs/toolkit"
 import { cartslice } from "./CartSlice"
 import { createWrapper } from "next-redux-wrapper";
+import storage from "redux-persist/lib/storage";
+import { persistReducer, persistStore } from "redux-persist";
 
-const makeStore = () =>
+const rootReducer = combineReducers({
+    [cartslice.name] : cartslice.reducer,
+})
+
+const makeConfiguredStore = () =>
     configureStore({
-        reducer: {
-            [cartslice.name] : cartslice.reducer,
-        },
+        reducer: rootReducer,
         devTools: true
     });
-
+export const makeStore = () =>{
+    const isServer = typeof window == "undefined";
+    if(isServer){
+        return makeConfiguredStore();
+    }
+    else{
+        const persistConfig = {
+            key: "nextjs",
+            whitelist: ["cart"], // make sure it does not clash with server keys
+            storage,
+          };
+        const persistedReducer = persistReducer(persistConfig, rootReducer);
+        let store: any = configureStore({
+        reducer: persistedReducer,
+        devTools: process.env.NODE_ENV !== "production",
+        });
+        store.__persistor = persistStore(store); // Nasty hack
+        return store;
+}
+}
 export type AppStore = ReturnType<typeof makeStore>;
 export type AppState = ReturnType<AppStore["getState"]>;
 export type AppThunk<ReturnType = void> = ThunkAction<
