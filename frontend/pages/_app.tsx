@@ -6,6 +6,8 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import { Toaster } from "react-hot-toast";
+import { useStore } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 const darkTheme = createTheme({
   palette: {
@@ -19,7 +21,9 @@ const darkTheme = createTheme({
 });
 
 function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+  const store: any = useStore();
   return (
+    <PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
     <ThemeProvider theme={darkTheme}>
       <SessionProvider session={session} refetchInterval={60 * 10}>
         <Toaster
@@ -36,6 +40,7 @@ function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         </Layout>
       </SessionProvider>
     </ThemeProvider>
+    </PersistGate>
   );
 }
 
