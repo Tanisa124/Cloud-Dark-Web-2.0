@@ -5,6 +5,11 @@
 
 ### Frontend ( Next JS )
 - Setup an enviroment
+- create a .env file in ./frontend with this content
+    ```
+    NEXT_PUBLIC_BASE_URL=http://localhost:8080
+    NEXTAUTH_SECRET=darkwebsecret
+    ```
 - Install dependencies
   
   ```
@@ -18,6 +23,24 @@
 
 ### Backend ( Nest JS )
 - Setup an enviroment
+- create a .env file in ./backend with this content
+   ```
+    DB_URI=
+    OPENAI_ORG_iD=
+    OPENAI_API_KEY=
+    GOOGLE_SEARCH_API_KEY=
+    AWS_COGNITO_USER_POOL_ID=
+    AWS_COGNITO_CLIENT_ID=
+    AWS_COGNITO_REGION=
+    STMP_USER=
+    STMP_PASSWORD=
+    FROM_EMAIL=
+    STMP_HOST=
+    STMP_PORT=
+    ```
+-  Register to MongoDB Atlas, create a cluster and put the connection URI in DB_URI
+-  Register to OpenAI on https://openai.com/blog/openai-api , get the Organiztion id and API key and put it in OPENAI_ORG_iD and OPENAI_API_KEY respectively.
+-  Register to https://serper.dev/, get the API key and put it in GOOGLE_SEARCH_API_KEY
 - Install dependencies
   
   ```
@@ -50,23 +73,7 @@
     yarn start
     ```
 9.  Change port to 8080
-10. Create a service name and add all environment variables
-    
-    ```
-    DB_URI=
-    OPENAI_ORG_iD=
-    OPENAI_API_KEY=
-    GOOGLE_SEARCH_API_KEY=
-    AWS_COGNITO_USER_POOL_ID=
-    AWS_COGNITO_CLIENT_ID=
-    AWS_COGNITO_REGION=
-    STMP_USER=
-    STMP_PASSWORD=
-    FROM_EMAIL=
-    STMP_HOST=
-    STMP_PORT=
-    ```
-    ** You can create your own "OPENAI_API_KEY" and "GOOGLE_SEARCH_API_KEY".
+10. Create a service name and add all environment variables with the names and values from backend local's .env file.
 11. Wait for creating a service
 
 ### In frontend service
@@ -87,13 +94,7 @@
     yarn start:prod
     ```
 9.  Change port to 3000
-10. Create a service name and add all environment variables
-    
-    ```
-    NEXT_PUBLIC_BASE_URL=
-    NEXTAUTH_URL=
-    NEXTAUTH_SECRET=
-    ```
+10. Create a service name and add all environment variables with the names and values from frontend local's .env file.
 
     ** NEXT_PUBLIC_BASE_URL => Use a deployment url from a backend service
 11. Wait for creating a service
