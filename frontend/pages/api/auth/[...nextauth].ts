@@ -1,4 +1,4 @@
-import { AxiosInstance } from "@/util/ApiUtil";
+import axios from "axios";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -15,10 +15,10 @@ export default NextAuth({
       },
       async authorize(credentials) {
         try {
-          const response = await AxiosInstance.post("/auth/authenticate", {
+          const response = await axios.post(process.env.NEXT_PUBLIC_BASE_URL + "/auth/authenticate", {
             username: credentials?.username,
             password: credentials?.password,
-          });
+          }, {withCredentials:true});
           return response.data as any;
         } catch (error) {
           console.log("error: ", error);
@@ -39,8 +39,8 @@ export default NextAuth({
         session.user = token.user.user;
         session.accessToken = token.user.accessToken;
         session.refreshToken = token.user.refreshToken;
-        const res = await AxiosInstance.get(
-          `/auth/${token.user.user.username}`
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/auth/${token.user.user.username}`
         );
         session.user.balance = res.data.balance;
       }
