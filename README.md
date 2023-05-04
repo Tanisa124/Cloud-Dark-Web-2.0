@@ -41,6 +41,12 @@
 -  Register to MongoDB Atlas, create a cluster and put the connection URI in DB_URI
 -  Register to OpenAI on https://openai.com/blog/openai-api , get the Organiztion id and API key and put it in OPENAI_ORG_iD and OPENAI_API_KEY respectively.
 -  Register to https://serper.dev/, get the API key and put it in GOOGLE_SEARCH_API_KEY
+-  Create pool in AWS Cognito to get "AWS_COGNITO_USER_POOL_ID" & "AWS_COGNITO_CLIENT_ID"
+-  Create IAM account from AWS SES to get "STMP_USER" & "STMP_PASSWORD"
+-  "FROM_EMAIL" = Email that register in SES
+-  "STMP_HOST" = email-smtp.<AWS SES Region>.amazonaws.com
+-  "STMP_PORT" = 587
+
 - Install dependencies
   
   ```
