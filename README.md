@@ -66,6 +66,7 @@
     STMP_HOST=
     STMP_PORT=
     ```
+    ** You can create your own "OPENAI_API_KEY" and "GOOGLE_SEARCH_API_KEY".
 11. Wait for creating a service
 
 ### In frontend service
