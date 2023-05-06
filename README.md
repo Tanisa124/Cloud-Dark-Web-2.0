@@ -11,12 +11,12 @@
     NEXT_PUBLIC_BASE_URL=http://localhost:8080
     NEXTAUTH_SECRET=darkwebsecret
     ```
-- Install dependencies
+- Install dependencies by running
   
   ```
   yarn install
   ```
-- Run
+- Run the application in local by running
 
   ```
   yarn dev
@@ -49,12 +49,12 @@
 -  "STMP_HOST" = email-smtp.<AWS SES Region>.amazonaws.com
 -  "STMP_PORT" = 587
 
-- Install dependencies
+- Install dependencies by running
   
   ```
   yarn install
   ```
-- Run
+- Run the application in local by running
 
     ```
     yarn start:dev
