@@ -4,6 +4,7 @@
 ## **Run in local**
 
 ### Frontend ( Next JS )
+- change directory to ./frontend
 - Setup an enviroment
 - create a .env file in ./frontend with this content
     ```
@@ -22,6 +23,7 @@
   ```
 
 ### Backend ( Nest JS )
+- change directory to ./backend
 - Setup an enviroment
 - create a .env file in ./backend with this content
    ```
